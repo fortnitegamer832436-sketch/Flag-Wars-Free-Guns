@@ -1,0 +1,28 @@
+return {
+    AmmoCapacity = 80,
+    FireMode = "Automatic",
+    FlashBrightness = 2,
+    FlashRange = 10,
+    GravityFactor = 0.5,
+    HeadshotCooldown = 1.5,
+    HeadshotDamage = 20,
+    HitDamage = 15,
+    HitMarkEffect = "Smoke",
+    MaxSpread = 0.85,
+    MinSpread = 0.45,
+    MuzzleFlashSize0 = 1.1,
+    MuzzleFlashSize1 = 1.4,
+    RecoilDecay = 0.81,
+    RecoilMax = 0.35,
+    RecoilMin = 0.25,
+    ShotCooldown = 0.12,
+    ShotEffect = "Bullet",
+    FlashColor = Color3.fromRGB(240, 70, 255),
+    HitMarkEffectConfig = {
+        Color = ColorSequence.new(Color3.fromRGB(255, 85, 255), Color3.fromRGB(85, 0, 127)),
+    },
+    ShotEffectConfig = {
+        Beam0 = { Color = ColorSequence.new(Color3.fromRGB(255, 85, 255)) },
+        Beam1 = { Color = ColorSequence.new(Color3.fromRGB(255, 255, 255)) },
+    },
+}
