@@ -1,0 +1,4695 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RBX0">
+		<Properties>
+			<string name="Name"><![CDATA[SavedBestTools]]></string>
+			<int64 name="SourceAssetId">-1</int64>
+			<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+			<bool name="Archivable">true</bool>
+			<Color3 name="IconTint">
+				<R>0</R>
+				<G>0</G>
+				<B>0</B>
+			</Color3>
+		</Properties>
+		<Item class="Tool" referent="RBX1">
+			<Properties>
+				<string name="Name"><![CDATA[Black Hole Gun]]></string>
+				<int64 name="SourceAssetId">3932803955</int64>
+				<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+				<bool name="Archivable">true</bool>
+				<Ref name="PrimaryPart">null</Ref>
+				<Content name="TextureId">
+					<null></null>
+				</Content>
+				<bool name="CanBeDropped">false</bool>
+				<bool name="Enabled">true</bool>
+				<CoordinateFrame name="Grip">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="ManualActivationOnly">false</bool>
+				<bool name="RequiresHandle">true</bool>
+				<string name="ToolTip"><![CDATA[]]></string>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX2">
+				<Properties>
+					<string name="Name"><![CDATA[ShootVFX]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                                File: ModuleScript_RBX2
+--                               Dumped in 0.0103 seconds
+--                          Bytecode version 12  |  2 functions
+
+local TweenService = game:GetService("TweenService")
+return function() -- Line: 3 -- upvalues: TweenService (val)
+    local Parts = script.Parent:FindFirstChild("Parts")
+    if not Parts then
+        return
+    end
+    local v1 = TweenService
+    local Motor6D = Parts.Main.Motor6D
+    local v2 = TweenInfo.new(1, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+    local v3 = {C0 = Parts.Main.Motor6D.C0 * CFrame.Angles(0, 0, 2.9670597283903604)}
+    v1:Create(Motor6D, v2, v3):Play()
+    for k, v in pairs(Parts.Main.TipAttachment:GetChildren()) do
+        if v:IsA("ParticleEmitter") then
+            v:Emit(1)
+        end
+    end
+end]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="ModuleScript" referent="RBX3">
+				<Properties>
+					<string name="Name"><![CDATA[Config]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                                File: ModuleScript_RBX3
+--                               Dumped in 0.00220 seconds
+--                          Bytecode version 12  |  1 functions
+
+return {
+    AmmoCapacity = 80,
+    FireMode = "Automatic",
+    FlashBrightness = 2,
+    FlashRange = 10,
+    GravityFactor = 0.5,
+    HeadshotCooldown = 1.5,
+    HeadshotDamage = 20,
+    HitDamage = 15,
+    HitMarkEffect = "Smoke",
+    MaxSpread = 0.85,
+    MinSpread = 0.45,
+    MuzzleFlashSize0 = 1.1,
+    MuzzleFlashSize1 = 1.4,
+    RecoilDecay = 0.81,
+    RecoilMax = 0.35,
+    RecoilMin = 0.25,
+    ShotCooldown = 0.12,
+    ShotEffect = "Bullet",
+    FlashColor = Color3.fromRGB(240, 70, 255),
+    HitMarkEffectConfig = {
+        Color = ColorSequence.new(Color3.fromRGB(255, 85, 255), Color3.fromRGB(85, 0, 127)),
+    },
+    ShotEffectConfig = {
+        Beam0 = {Color = ColorSequence.new(Color3.fromRGB(255, 85, 255))},
+        Beam1 = {Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))},
+    },
+}]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="StringValue" referent="RBX4">
+				<Properties>
+					<string name="Name"><![CDATA[WeaponType]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<string name="Value"><![CDATA[BulletWeapon]]></string>
+				</Properties>
+			</Item>
+			<Item class="Model" referent="RBX5">
+				<Properties>
+					<string name="Name"><![CDATA[Parts]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Ref name="PrimaryPart">RBX9</Ref>
+				</Properties>
+				<Item class="MeshPart" referent="RBX6">
+					<Properties>
+						<string name="Name"><![CDATA[Neon]]></string>
+						<int64 name="SourceAssetId">100053969430053</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>-266.197723</X>
+							<Y>101.180634</Y>
+							<Z>96.7952194</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">false</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4287465164</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.378964812</X>
+							<Y>0.680066943</Y>
+							<Z>1.48193991</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>-0.0945146754</X>
+							<Y>-0.0144497734</Y>
+							<Z>0.0106178187</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>0.0423365235</X>
+							<Y>0.0327620581</Y>
+							<Z>0.0208504274</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.00417345855</X>
+							<Y>0.000543709961</Y>
+							<Z>-0.000383387523</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.10649921</float>
+						<Vector3 name="InitialSize">
+							<X>0.750801325</X>
+							<Y>1.34734213</Y>
+							<Z>2.93600512</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://86112846004854]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+				</Item>
+				<Item class="MeshPart" referent="RBX7">
+					<Properties>
+						<string name="Name"><![CDATA[Claw]]></string>
+						<int64 name="SourceAssetId">109794816688635</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>-266.197479</X>
+							<Y>101.416077</Y>
+							<Z>94.6636734</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.01806211</X>
+							<Y>0.885178208</Y>
+							<Z>0.897353232</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>0.00232117297</X>
+							<Y>-0.239386812</Y>
+							<Z>0.217003256</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>0.249589592</X>
+							<Y>0.249083117</Y>
+							<Z>0.196526736</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.000503690448</X>
+							<Y>-0.000629697461</Y>
+							<Z>-0.00369010423</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.706516623</float>
+						<Vector3 name="InitialSize">
+							<X>2.01697469</X>
+							<Y>1.75370657</Y>
+							<Z>1.7778275</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://136987598837835]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+					<Item class="SurfaceAppearance" referent="RBX8">
+						<Properties>
+							<string name="Name"><![CDATA[SurfaceAppearance]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Color3 name="Color">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="ColorMap">
+								<url><![CDATA[rbxassetid://118171109205026]]></url>
+							</Content>
+							<float name="EmissiveStrength">1</float>
+							<Color3 name="EmissiveTint">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="MetalnessMap">
+								<null></null>
+							</Content>
+							<Content name="NormalMap">
+								<url><![CDATA[rbxassetid://135835658001125]]></url>
+							</Content>
+							<Content name="RoughnessMap">
+								<null></null>
+							</Content>
+							<Content name="TexturePack">
+								<url><![CDATA[rbxassetid://73929787811481]]></url>
+							</Content>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="MeshPart" referent="RBX9">
+					<Properties>
+						<string name="Name"><![CDATA[Main]]></string>
+						<int64 name="SourceAssetId">81769136954544</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>-266.197723</X>
+							<Y>100.986641</Y>
+							<Z>96.9335556</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.408039302</X>
+							<Y>1.30793571</Y>
+							<Z>3.640239</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>-0.000772388128</X>
+							<Y>0.290962487</Y>
+							<Z>0.125807509</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>19.2890224</X>
+							<Y>17.8116226</Y>
+							<Z>1.81166732</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.000593651552</X>
+							<Y>-0.00107230991</Y>
+							<Z>1.26355481</Z>
+						</Vector3>
+						<float name="UnscaledVolume">5.52878666</float>
+						<Vector3 name="InitialSize">
+							<X>0.808403492</X>
+							<Y>2.59126973</Y>
+							<Z>7.21200705</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://77806765303758]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+					<Item class="Sound" referent="RBX10">
+						<Properties>
+							<string name="Name"><![CDATA[Fired]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://8692609866]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX11">
+						<Properties>
+							<string name="Name"><![CDATA[Reload]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://8693164313]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="SurfaceAppearance" referent="RBX12">
+						<Properties>
+							<string name="Name"><![CDATA[SurfaceAppearance]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Color3 name="Color">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="ColorMap">
+								<url><![CDATA[rbxassetid://118171109205026]]></url>
+							</Content>
+							<float name="EmissiveStrength">1</float>
+							<Color3 name="EmissiveTint">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="MetalnessMap">
+								<null></null>
+							</Content>
+							<Content name="NormalMap">
+								<url><![CDATA[rbxassetid://135835658001125]]></url>
+							</Content>
+							<Content name="RoughnessMap">
+								<null></null>
+							</Content>
+							<Content name="TexturePack">
+								<url><![CDATA[rbxassetid://73929787811481]]></url>
+							</Content>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX13">
+						<Properties>
+							<string name="Name"><![CDATA[HandleAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00102996826</X>
+								<Y>-0.136142731</Y>
+								<Z>0.317657471</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX14">
+						<Properties>
+							<string name="Name"><![CDATA[TipAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00189208984</X>
+								<Y>0.2891922</Y>
+								<Z>-2.61694336</Z>
+								<R00>-1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>-1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+						<Item class="ParticleEmitter" referent="RBX15">
+							<Properties>
+								<string name="Name"><![CDATA[ParticleEmitter]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">1</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.333333343 1 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.333333343 1 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">4.25</float>
+								<bool name="Enabled">false</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.5 0.5</NumberRange>
+								<float name="LightEmission">1</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">25</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">0 0</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1.37499988 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">0 0</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>0</X>
+									<Y>0</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://8451174579]]></url>
+								</Content>
+								<float name="TimeScale">0.550000012</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.823191702 1 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">0</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+						<Item class="ParticleEmitter" referent="RBX16">
+							<Properties>
+								<string name="Name"><![CDATA[Ring]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">2</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.333333343 1 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.333333343 1 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">0</float>
+								<bool name="Enabled">false</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.100000001 0.100000001</NumberRange>
+								<float name="LightEmission">1</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">15</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">0 0</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 2 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">20 20</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>0</X>
+									<Y>0</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://8552621552]]></url>
+								</Content>
+								<float name="TimeScale">0.550000012</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.600459218 0.243749976 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.823191702 1 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">1</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="Motor6D" referent="RBX17">
+						<Properties>
+							<string name="Name"><![CDATA[Motor6D]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="C0">
+								<X>0.00025177002</X>
+								<Y>0.329429626</Y>
+								<Z>-1.96987915</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="C1">
+								<X>0</X>
+								<Y>-0.100002289</Y>
+								<Z>0.300003052</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<Ref name="Part0">RBX9</Ref>
+							<Ref name="Part1">RBX7</Ref>
+							<float name="DesiredAngle">0</float>
+							<float name="MaxVelocity">0</float>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX18">
+						<Properties>
+							<string name="Name"><![CDATA[BlackHoleGun_Main > Handle]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX19">
+						<Properties>
+							<string name="Name"><![CDATA[BlackHoleGun_Main > BlackHoleGun_Neon]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="PackageLink" referent="RBX20">
+				<Properties>
+					<string name="Name"><![CDATA[PackageLink]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<bool name="AutoUpdate">false</bool>
+					<string name="DefaultName"><![CDATA[]]></string>
+					<int name="ModifiedState">-1</int>
+					<Content name="PackageId">
+						<url><![CDATA[rbxassetid://139829258683725]]></url>
+					</Content>
+					<BinaryString name="SerializedDefaultAttributes"></BinaryString>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX21">
+				<Properties>
+					<string name="Name"><![CDATA[Handle]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<bool name="Anchored">false</bool>
+					<bool name="AudioCanCollide">true</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<CoordinateFrame name="CFrame">
+						<X>-266.24881</X>
+						<Y>101.060555</Y>
+						<Z>96.6374893</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<bool name="CanQuery">false</bool>
+					<bool name="CanTouch">false</bool>
+					<bool name="CastShadow">true</bool>
+					<string name="CollisionGroup"><![CDATA[Default]]></string>
+					<int name="CollisionGroupId">0</int>
+					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+					<bool name="EnableFluidForces">false</bool>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<bool name="Locked">false</bool>
+					<bool name="Massless">false</bool>
+					<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+					<CoordinateFrame name="PivotOffset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<int name="RootPriority">-127</int>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="size">
+						<X>0.5</X>
+						<Y>1</Y>
+						<Z>3</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<float name="Transparency">1</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+				</Properties>
+				<Item class="Weld" referent="RBX22">
+					<Properties>
+						<string name="Name"><![CDATA[HandleWeld]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>0.00102996826</X>
+							<Y>-0.136142731</Y>
+							<Z>0.317657471</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="Enabled">true</bool>
+						<Ref name="Part0">RBX21</Ref>
+						<Ref name="Part1">RBX9</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="IntValue" referent="RBX23">
+				<Properties>
+					<string name="Name"><![CDATA[CurrentAmmo]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<int64 name="Value">80</int64>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Tool" referent="RBX24">
+			<Properties>
+				<string name="Name"><![CDATA[Tommy Gun]]></string>
+				<int64 name="SourceAssetId">3932803955</int64>
+				<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+				<bool name="Archivable">true</bool>
+				<Ref name="PrimaryPart">null</Ref>
+				<Content name="TextureId">
+					<null></null>
+				</Content>
+				<bool name="CanBeDropped">false</bool>
+				<bool name="Enabled">true</bool>
+				<CoordinateFrame name="Grip">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="ManualActivationOnly">false</bool>
+				<bool name="RequiresHandle">true</bool>
+				<string name="ToolTip"><![CDATA[]]></string>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX25">
+				<Properties>
+					<string name="Name"><![CDATA[Config]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                               File: ModuleScript_RBX25
+--                              Dumped in 0.000412 seconds
+--                          Bytecode version 12  |  1 functions
+
+return {
+    AmmoCapacity = 100,
+    BeamWidth0 = 0.5,
+    BeamWidth1 = 0.8,
+    CasingEffect = "RifleCasing",
+    FireMode = "Automatic",
+    FlashBrightness = 3,
+    FlashRange = 10,
+    GravityFactor = 0.25,
+    HeadshotCooldown = 1,
+    HeadshotDamage = 15,
+    HitDamage = 12,
+    MaxSpread = 0.85,
+    MinSpread = 0.45,
+    MuzzleEffect = "Default",
+    MuzzleFlashSize0 = 1.1,
+    MuzzleFlashSize1 = 1.4,
+    RecoilDecay = 0.81,
+    RecoilMax = 0.35,
+    RecoilMin = 0.25,
+    ShotCooldown = 0.095,
+    ShotEffect = "Bullet",
+    TotalRecoilMax = 0.9,
+    FlashColor = Color3.fromRGB(255, 177, 42),
+}]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="Model" referent="RBX26">
+				<Properties>
+					<string name="Name"><![CDATA[Parts]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Ref name="PrimaryPart">RBX27</Ref>
+				</Properties>
+				<Item class="MeshPart" referent="RBX27">
+					<Properties>
+						<string name="Name"><![CDATA[Main]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>-249.200409</X>
+							<Y>101.207558</Y>
+							<Z>64.5179825</Z>
+							<R00>0</R00>
+							<R01>0</R01>
+							<R02>1</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>-0</R12>
+							<R20>-1</R20>
+							<R21>0</R21>
+							<R22>0</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0.248365805</Y>
+							<Z>0.180139661</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>0</R11>
+							<R12>-1</R12>
+							<R20>0</R20>
+							<R21>1</R21>
+							<R22>0</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.842674196</X>
+							<Y>1.45889008</Y>
+							<Z>5.09635067</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>0.00640461734</X>
+							<Y>0.0447042733</Y>
+							<Z>0.598459303</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>1.21491098</X>
+							<Y>1.15851867</Y>
+							<Z>0.0797308385</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.00212009973</X>
+							<Y>0.000244276598</Y>
+							<Z>0.138311923</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.814519942</float>
+						<Vector3 name="InitialSize">
+							<X>0.842674196</X>
+							<Y>1.45889008</Y>
+							<Z>5.09635067</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://12213058960]]></url>
+						</Content>
+						<Content name="TextureID">
+							<url><![CDATA[rbxassetid://12213059076]]></url>
+						</Content>
+					</Properties>
+					<Item class="Sound" referent="RBX28">
+						<Properties>
+							<string name="Name"><![CDATA[Fired]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://2881626867]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX29">
+						<Properties>
+							<string name="Name"><![CDATA[Reload]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://318963748]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX30">
+						<Properties>
+							<string name="Name"><![CDATA[HandleAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>-0.00833129883</X>
+								<Y>-0.211669922</Y>
+								<Z>0.0894927979</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX31">
+						<Properties>
+							<string name="Name"><![CDATA[TipAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00247192383</X>
+								<Y>0.394493103</Y>
+								<Z>-2.59368134</Z>
+								<R00>-1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>-1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="StringValue" referent="RBX32">
+				<Properties>
+					<string name="Name"><![CDATA[WeaponType]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<string name="Value"><![CDATA[BulletWeapon]]></string>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX33">
+				<Properties>
+					<string name="Name"><![CDATA[Handle]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<bool name="Anchored">false</bool>
+					<bool name="AudioCanCollide">true</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<CoordinateFrame name="CFrame">
+						<X>-249.308075</X>
+						<Y>101.205833</Y>
+						<Z>64.518013</Z>
+						<R00>-1.1920929e-07</R00>
+						<R01>0</R01>
+						<R02>1.00000012</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>-1.00000012</R20>
+						<R21>0</R21>
+						<R22>-1.1920929e-07</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<bool name="CanQuery">true</bool>
+					<bool name="CanTouch">false</bool>
+					<bool name="CastShadow">true</bool>
+					<string name="CollisionGroup"><![CDATA[Default]]></string>
+					<int name="CollisionGroupId">0</int>
+					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+					<bool name="EnableFluidForces">false</bool>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<bool name="Locked">false</bool>
+					<bool name="Massless">false</bool>
+					<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+					<CoordinateFrame name="PivotOffset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<int name="RootPriority">-127</int>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="size">
+						<X>0.100000001</X>
+						<Y>0.100000001</Y>
+						<Z>0.100000001</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<float name="Transparency">1</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+				</Properties>
+				<Item class="Weld" referent="RBX34">
+					<Properties>
+						<string name="Name"><![CDATA[HandleWeld]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>-0.00833129883</X>
+							<Y>-0.211669922</Y>
+							<Z>0.0894927979</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="Enabled">true</bool>
+						<Ref name="Part0">RBX33</Ref>
+						<Ref name="Part1">RBX27</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="IntValue" referent="RBX35">
+				<Properties>
+					<string name="Name"><![CDATA[CurrentAmmo]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<int64 name="Value">100</int64>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Tool" referent="RBX36">
+			<Properties>
+				<string name="Name"><![CDATA[Blaze BHG]]></string>
+				<int64 name="SourceAssetId">3932803955</int64>
+				<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+				<bool name="Archivable">true</bool>
+				<Ref name="PrimaryPart">null</Ref>
+				<Content name="TextureId">
+					<null></null>
+				</Content>
+				<bool name="CanBeDropped">false</bool>
+				<bool name="Enabled">true</bool>
+				<CoordinateFrame name="Grip">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="ManualActivationOnly">false</bool>
+				<bool name="RequiresHandle">true</bool>
+				<string name="ToolTip"><![CDATA[]]></string>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX37">
+				<Properties>
+					<string name="Name"><![CDATA[ShootVFX]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                                File: ModuleScript_RBX2
+--                               Dumped in 0.0103 seconds
+--                          Bytecode version 12  |  2 functions
+
+local TweenService = game:GetService("TweenService")
+return function() -- Line: 3 -- upvalues: TweenService (val)
+    local Parts = script.Parent:FindFirstChild("Parts")
+    if not Parts then
+        return
+    end
+    local v1 = TweenService
+    local Motor6D = Parts.Main.Motor6D
+    local v2 = TweenInfo.new(1, Enum.EasingStyle.Back, Enum.EasingDirection.Out)
+    local v3 = {C0 = Parts.Main.Motor6D.C0 * CFrame.Angles(0, 0, 2.9670597283903604)}
+    v1:Create(Motor6D, v2, v3):Play()
+    for k, v in pairs(Parts.Main.TipAttachment:GetChildren()) do
+        if v:IsA("ParticleEmitter") then
+            v:Emit(1)
+        end
+    end
+end]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="ModuleScript" referent="RBX38">
+				<Properties>
+					<string name="Name"><![CDATA[SkinConfig]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                               File: ModuleScript_RBX38
+--                               Dumped in 0.00102 seconds
+--                          Bytecode version 12  |  1 functions
+
+return {
+    ShotEffect = "Bullet",
+    HitMarkEffect = "Smoke",
+    FlashColor = Color3.fromRGB(255, 177, 42),
+    HitMarkEffectConfig = {
+        Color = ColorSequence.new(Color3.fromRGB(255, 170, 0), Color3.fromRGB(102, 48, 26)),
+    },
+    ShotEffectConfig = {
+        Beam0 = {Color = ColorSequence.new(Color3.fromRGB(255, 170, 0))},
+        Beam1 = {Color = ColorSequence.new(Color3.fromRGB(255, 223, 39))},
+    },
+}]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="StringValue" referent="RBX39">
+				<Properties>
+					<string name="Name"><![CDATA[WeaponType]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<string name="Value"><![CDATA[BulletWeapon]]></string>
+				</Properties>
+			</Item>
+			<Item class="Model" referent="RBX40">
+				<Properties>
+					<string name="Name"><![CDATA[Parts]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Ref name="PrimaryPart">RBX44</Ref>
+				</Properties>
+				<Item class="MeshPart" referent="RBX41">
+					<Properties>
+						<string name="Name"><![CDATA[Neon]]></string>
+						<int64 name="SourceAssetId">100053969430053</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>523.792603</X>
+							<Y>32.7050667</Y>
+							<Z>104.726646</Z>
+							<R00>0.210386693</R00>
+							<R01>0.69774127</R01>
+							<R02>0.684758782</R02>
+							<R10>0.706434071</R10>
+							<R11>0.375678539</R11>
+							<R12>-0.599847138</R12>
+							<R20>-0.675787449</R20>
+							<R21>0.609936655</R21>
+							<R22>-0.413870394</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">false</bool>
+						<string name="CollisionGroup"><![CDATA[Team Red]]></string>
+						<int name="CollisionGroupId">10</int>
+						<Color3uint8 name="Color3uint8">4290090585</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.378964812</X>
+							<Y>0.680066943</Y>
+							<Z>1.48193991</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>-0.0945146754</X>
+							<Y>-0.0144497734</Y>
+							<Z>0.0106178187</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>0.0423365235</X>
+							<Y>0.0327620581</Y>
+							<Z>0.0208504274</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.00417345855</X>
+							<Y>0.000543709961</Y>
+							<Z>-0.000383387523</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.10649921</float>
+						<Vector3 name="InitialSize">
+							<X>0.750801325</X>
+							<Y>1.34734213</Y>
+							<Z>2.93600512</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://86112846004854]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+				</Item>
+				<Item class="MeshPart" referent="RBX42">
+					<Properties>
+						<string name="Name"><![CDATA[Claw]]></string>
+						<int64 name="SourceAssetId">109794816688635</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>522.497314</X>
+							<Y>34.0723</Y>
+							<Z>105.752266</Z>
+							<R00>0.210386693</R00>
+							<R01>0.69774127</R01>
+							<R02>0.684758782</R02>
+							<R10>0.706434071</R10>
+							<R11>0.375678539</R11>
+							<R12>-0.599847138</R12>
+							<R20>-0.675787449</R20>
+							<R21>0.609936655</R21>
+							<R22>-0.413870394</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Team Red]]></string>
+						<int name="CollisionGroupId">10</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.01806211</X>
+							<Y>0.885178208</Y>
+							<Z>0.897353232</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>0.00232117297</X>
+							<Y>-0.239386812</Y>
+							<Z>0.217003256</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>0.249589592</X>
+							<Y>0.249083117</Y>
+							<Z>0.196526736</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.000503690448</X>
+							<Y>-0.000629697461</Y>
+							<Z>-0.00369010423</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.706516623</float>
+						<Vector3 name="InitialSize">
+							<X>2.01697469</X>
+							<Y>1.75370657</Y>
+							<Z>1.7778275</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://136987598837835]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+					<Item class="SurfaceAppearance" referent="RBX43">
+						<Properties>
+							<string name="Name"><![CDATA[SurfaceAppearance]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Color3 name="Color">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="ColorMap">
+								<url><![CDATA[rbxassetid://91965584546965]]></url>
+							</Content>
+							<float name="EmissiveStrength">1</float>
+							<Color3 name="EmissiveTint">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="MetalnessMap">
+								<null></null>
+							</Content>
+							<Content name="NormalMap">
+								<url><![CDATA[rbxassetid://135835658001125]]></url>
+							</Content>
+							<Content name="RoughnessMap">
+								<null></null>
+							</Content>
+							<Content name="TexturePack">
+								<url><![CDATA[rbxassetid://105025817672171]]></url>
+							</Content>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="MeshPart" referent="RBX44">
+					<Properties>
+						<string name="Name"><![CDATA[Main]]></string>
+						<int64 name="SourceAssetId">81769136954544</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>523.751953</X>
+							<Y>32.5492096</Y>
+							<Z>104.551071</Z>
+							<R00>0.210386693</R00>
+							<R01>0.69774127</R01>
+							<R02>0.684758782</R02>
+							<R10>0.706434071</R10>
+							<R11>0.375678539</R11>
+							<R12>-0.599847138</R12>
+							<R20>-0.675787449</R20>
+							<R21>0.609936655</R21>
+							<R22>-0.413870394</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Team Red]]></string>
+						<int name="CollisionGroupId">10</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.408039302</X>
+							<Y>1.30793571</Y>
+							<Z>3.640239</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>-0.000772388128</X>
+							<Y>0.290962487</Y>
+							<Z>0.125807509</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>19.2890224</X>
+							<Y>17.8116226</Y>
+							<Z>1.81166732</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-0.000593651552</X>
+							<Y>-0.00107230991</Y>
+							<Z>1.26355481</Z>
+						</Vector3>
+						<float name="UnscaledVolume">5.52878666</float>
+						<Vector3 name="InitialSize">
+							<X>0.808403492</X>
+							<Y>2.59126973</Y>
+							<Z>7.21200705</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://77806765303758]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+					<Item class="Sound" referent="RBX45">
+						<Properties>
+							<string name="Name"><![CDATA[Fired]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://8692609866]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX46">
+						<Properties>
+							<string name="Name"><![CDATA[Reload]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://8693164313]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX47">
+						<Properties>
+							<string name="Name"><![CDATA[HandleAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00102996826</X>
+								<Y>-0.136142731</Y>
+								<Z>0.317657471</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX48">
+						<Properties>
+							<string name="Name"><![CDATA[TipAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00189208984</X>
+								<Y>0.2891922</Y>
+								<Z>-2.61694336</Z>
+								<R00>-1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>-1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+						<Item class="ParticleEmitter" referent="RBX49">
+							<Properties>
+								<string name="Name"><![CDATA[ParticleEmitter]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">1</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.666666687 0 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.666666687 0 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">4.25</float>
+								<bool name="Enabled">false</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.5 0.5</NumberRange>
+								<float name="LightEmission">1</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">25</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">0 0</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1.37499988 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">0 0</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>0</X>
+									<Y>0</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://8451174579]]></url>
+								</Content>
+								<float name="TimeScale">0.550000012</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.823191702 1 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">0</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+						<Item class="ParticleEmitter" referent="RBX50">
+							<Properties>
+								<string name="Name"><![CDATA[Ring]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">2</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.666666687 0 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.666666687 0 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">0</float>
+								<bool name="Enabled">false</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.100000001 0.100000001</NumberRange>
+								<float name="LightEmission">1</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">15</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">0 0</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 2 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">20 20</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>0</X>
+									<Y>0</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://8552621552]]></url>
+								</Content>
+								<float name="TimeScale">0.550000012</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.600459218 0.243749976 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.823191702 1 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">1</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="Motor6D" referent="RBX51">
+						<Properties>
+							<string name="Name"><![CDATA[Motor6D]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="C0">
+								<X>0.00025177002</X>
+								<Y>0.329429626</Y>
+								<Z>-1.96987915</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<CoordinateFrame name="C1">
+								<X>0</X>
+								<Y>-0.100002289</Y>
+								<Z>0.300003052</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Enabled">true</bool>
+							<Ref name="Part0">RBX44</Ref>
+							<Ref name="Part1">RBX42</Ref>
+							<float name="DesiredAngle">0</float>
+							<float name="MaxVelocity">0</float>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX52">
+						<Properties>
+							<string name="Name"><![CDATA[BlackHoleGun_Main > Handle]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX53">
+						<Properties>
+							<string name="Name"><![CDATA[BlackHoleGun_Main > BlackHoleGun_Neon]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="SurfaceAppearance" referent="RBX54">
+						<Properties>
+							<string name="Name"><![CDATA[SurfaceAppearance]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Color3 name="Color">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="ColorMap">
+								<url><![CDATA[rbxassetid://91965584546965]]></url>
+							</Content>
+							<float name="EmissiveStrength">1</float>
+							<Color3 name="EmissiveTint">
+								<R>1</R>
+								<G>1</G>
+								<B>1</B>
+							</Color3>
+							<Content name="MetalnessMap">
+								<null></null>
+							</Content>
+							<Content name="NormalMap">
+								<url><![CDATA[rbxassetid://135835658001125]]></url>
+							</Content>
+							<Content name="RoughnessMap">
+								<null></null>
+							</Content>
+							<Content name="TexturePack">
+								<url><![CDATA[rbxassetid://105025817672171]]></url>
+							</Content>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX55">
+						<Properties>
+							<string name="Name"><![CDATA[Attachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00924682617</X>
+								<Y>0.498134613</Y>
+								<Z>-1.39659119</Z>
+								<R00>-2.08616257e-05</R00>
+								<R01>1.29342088e-05</R01>
+								<R02>1</R02>
+								<R10>0.897105634</R10>
+								<R11>0.441816121</R11>
+								<R12>1.30005392e-05</R12>
+								<R20>-0.441816121</R20>
+								<R21>0.897105634</R21>
+								<R22>-2.08203528e-05</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+						<Item class="ParticleEmitter" referent="RBX56">
+							<Properties>
+								<string name="Name"><![CDATA[Fire]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">3</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">20</float>
+								<bool name="Enabled">true</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.200000003 0.400000006</NumberRange>
+								<float name="LightEmission">0.5</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">10</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">-90 -90</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0.200000003 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0.200000003 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">2 3.5</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>-7</X>
+									<Y>5</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.302992523 0.299999714 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1.94999981 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://102701897640543]]></url>
+								</Content>
+								<float name="TimeScale">1</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">0</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="Attachment" referent="RBX57">
+						<Properties>
+							<string name="Name"><![CDATA[Attachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.00924682617</X>
+								<Y>0.535369873</Y>
+								<Z>-0.643737793</Z>
+								<R00>-2.08616257e-05</R00>
+								<R01>1.29342088e-05</R01>
+								<R02>1</R02>
+								<R10>0.897105634</R10>
+								<R11>0.441816121</R11>
+								<R12>1.30005392e-05</R12>
+								<R20>-0.441816121</R20>
+								<R21>0.897105634</R21>
+								<R22>-2.08203528e-05</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+						<Item class="ParticleEmitter" referent="RBX58">
+							<Properties>
+								<string name="Name"><![CDATA[Fire]]></string>
+								<int64 name="SourceAssetId">-1</int64>
+								<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+								<bool name="Archivable">true</bool>
+								<Vector3 name="Acceleration">
+									<X>0</X>
+									<Y>0</Y>
+									<Z>0</Z>
+								</Vector3>
+								<float name="Brightness">3</float>
+								<ColorSequence name="Color">
+									<Keypoints>
+										<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+										<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									</Keypoints>
+								</ColorSequence>
+								<float name="Drag">20</float>
+								<bool name="Enabled">true</bool>
+								<bool name="FlipbookBlendFrames">true</bool>
+								<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+								<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+								<int name="FlipbookSizeX">1</int>
+								<int name="FlipbookSizeY">1</int>
+								<bool name="FlipbookStartRandom">false</bool>
+								<NumberRange name="Lifetime">0.200000003 0.400000006</NumberRange>
+								<float name="LightEmission">0.5</float>
+								<float name="LightInfluence">0</float>
+								<bool name="LockedToPart">true</bool>
+								<float name="Rate">10</float>
+								<NumberRange name="RotSpeed">0 0</NumberRange>
+								<NumberRange name="Rotation">-90 -90</NumberRange>
+								<float name="ShapePartial">1</float>
+								<NumberSequence name="Size">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0.200000003 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0.200000003 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<NumberRange name="Speed">2 3.5</NumberRange>
+								<Vector2 name="SpreadAngle">
+									<X>-7</X>
+									<Y>5</Y>
+								</Vector2>
+								<NumberSequence name="Squash">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>0.302992523 0.299999714 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 1.94999981 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<Content name="Texture">
+									<url><![CDATA[rbxassetid://102701897640543]]></url>
+								</Content>
+								<float name="TimeScale">1</float>
+								<NumberSequence name="Transparency">
+									<Keypoints>
+										<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+										<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+									</Keypoints>
+								</NumberSequence>
+								<float name="VelocityInheritance">0</float>
+								<bool name="WindAffectsDrag">false</bool>
+								<float name="ZOffset">0</float>
+							</Properties>
+						</Item>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX59">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Part" referent="RBX60">
+					<Properties>
+						<string name="Name"><![CDATA[Part]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>523.622742</X>
+							<Y>32.8506546</Y>
+							<Z>104.826248</Z>
+							<R00>0.684758782</R00>
+							<R01>0.69774127</R01>
+							<R02>-0.210386693</R02>
+							<R10>-0.599847138</R10>
+							<R11>0.375678539</R11>
+							<R12>-0.706434071</R12>
+							<R20>-0.413870394</R20>
+							<R21>0.609936655</R21>
+							<R22>0.675787449</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">true</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Team Red]]></string>
+						<int name="CollisionGroupId">10</int>
+						<Color3uint8 name="Color3uint8">4294901760</Color3uint8>
+						<bool name="EnableFluidForces">true</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>4.13453341</X>
+							<Y>0.971470773</Y>
+							<Z>0.434288263</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+					</Properties>
+					<Item class="ParticleEmitter" referent="RBX61">
+						<Properties>
+							<string name="Name"><![CDATA[Aura]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">2</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>0.5 1 0.43921569 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">0</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.75 1.20000005</NumberRange>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">40</float>
+							<NumberRange name="RotSpeed">0 0</NumberRange>
+							<NumberRange name="Rotation">-360 360</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">0 0</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>0</X>
+								<Y>0</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://867619398]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.500999987 0.970000029 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+					<Item class="ParticleEmitter" referent="RBX62">
+						<Properties>
+							<string name="Name"><![CDATA[Flame]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">3</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">5</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.5 1</NumberRange>
+							<float name="LightEmission">0.5</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">12</float>
+							<NumberRange name="RotSpeed">-20 20</NumberRange>
+							<NumberRange name="Rotation">-360 360</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.200000003 0.275000006 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.498806715 0.78125 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.795942724 0.68749994 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0.56250006 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">0 0</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>360</X>
+								<Y>360</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 1</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0909999982 -0.0500000007 0.5</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.200000003 -0.115000002 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://15314376121]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">-0.5</float>
+						</Properties>
+					</Item>
+					<Item class="ParticleEmitter" referent="RBX63">
+						<Properties>
+							<string name="Name"><![CDATA[Specs x]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">0</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.400000006 0.600000024</NumberRange>
+							<float name="LightEmission">0</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">50</float>
+							<NumberRange name="RotSpeed">100 150</NumberRange>
+							<NumberRange name="Rotation">-180 360</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.49875313 0.3125 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">0 3.5</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>360</X>
+								<Y>360</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 -0.300000012 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 -0.300000012 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://8084996370]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.502493799 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">-0.5</float>
+						</Properties>
+					</Item>
+					<Item class="ParticleEmitter" referent="RBX64">
+						<Properties>
+							<string name="Name"><![CDATA[Flame]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">7</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">0</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.400000006 0.400000006</NumberRange>
+							<float name="LightEmission">0.5</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">5</float>
+							<NumberRange name="RotSpeed">0 0</NumberRange>
+							<NumberRange name="Rotation">-360 360</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0.800000012 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0.800000012 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">0.00230000005 0.00230000005</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>-360</X>
+								<Y>360</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://16865903588]]></url>
+							</Content>
+							<float name="TimeScale">0.600000024</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.647727251 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">-0.5</float>
+						</Properties>
+					</Item>
+					<Item class="ParticleEmitter" referent="RBX65">
+						<Properties>
+							<string name="Name"><![CDATA[MiddleFlame x]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>0.5 1 0.427450985 0.0941176489 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.678431392 0.160784319 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">0</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.300000012 0.300000012</NumberRange>
+							<float name="LightEmission">0.699999988</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">8</float>
+							<NumberRange name="RotSpeed">0 0</NumberRange>
+							<NumberRange name="Rotation">-360 360</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0.5 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0.5 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">0.00100000005 0.00100000005</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>-360</X>
+								<Y>360</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://127970649591196]]></url>
+							</Content>
+							<float name="TimeScale">0.600000024</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Part" referent="RBX66">
+				<Properties>
+					<string name="Name"><![CDATA[Handle]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<bool name="Anchored">false</bool>
+					<bool name="AudioCanCollide">true</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<CoordinateFrame name="CFrame">
+						<X>517.34967</X>
+						<Y>32.570446</Y>
+						<Z>174.32016</Z>
+						<R00>-0.4436028</R00>
+						<R01>-0.0895962119</R01>
+						<R02>0.891733944</R02>
+						<R10>0.0540685505</R10>
+						<R11>0.990502596</R11>
+						<R12>0.126416892</R12>
+						<R20>-0.894591272</R20>
+						<R21>0.104293615</R21>
+						<R22>-0.434545398</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<bool name="CanQuery">false</bool>
+					<bool name="CanTouch">false</bool>
+					<bool name="CastShadow">true</bool>
+					<string name="CollisionGroup"><![CDATA[Team Red]]></string>
+					<int name="CollisionGroupId">10</int>
+					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+					<bool name="EnableFluidForces">false</bool>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<bool name="Locked">false</bool>
+					<bool name="Massless">false</bool>
+					<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+					<CoordinateFrame name="PivotOffset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<int name="RootPriority">-127</int>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="size">
+						<X>0.5</X>
+						<Y>1</Y>
+						<Z>3</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<float name="Transparency">1</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+				</Properties>
+				<Item class="Weld" referent="RBX67">
+					<Properties>
+						<string name="Name"><![CDATA[HandleWeld]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>0.00102996826</X>
+							<Y>-0.136142731</Y>
+							<Z>0.317657471</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="Enabled">true</bool>
+						<Ref name="Part0">RBX66</Ref>
+						<Ref name="Part1">RBX44</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="ModuleScript" referent="RBX68">
+				<Properties>
+					<string name="Name"><![CDATA[Config]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                                File: ModuleScript_RBX3
+--                               Dumped in 0.00220 seconds
+--                          Bytecode version 12  |  1 functions
+
+return {
+    AmmoCapacity = 80,
+    FireMode = "Automatic",
+    FlashBrightness = 2,
+    FlashRange = 10,
+    GravityFactor = 0.5,
+    HeadshotCooldown = 1.5,
+    HeadshotDamage = 20,
+    HitDamage = 15,
+    HitMarkEffect = "Smoke",
+    MaxSpread = 0.85,
+    MinSpread = 0.45,
+    MuzzleFlashSize0 = 1.1,
+    MuzzleFlashSize1 = 1.4,
+    RecoilDecay = 0.81,
+    RecoilMax = 0.35,
+    RecoilMin = 0.25,
+    ShotCooldown = 0.12,
+    ShotEffect = "Bullet",
+    FlashColor = Color3.fromRGB(240, 70, 255),
+    HitMarkEffectConfig = {
+        Color = ColorSequence.new(Color3.fromRGB(255, 85, 255), Color3.fromRGB(85, 0, 127)),
+    },
+    ShotEffectConfig = {
+        Beam0 = {Color = ColorSequence.new(Color3.fromRGB(255, 85, 255))},
+        Beam1 = {Color = ColorSequence.new(Color3.fromRGB(255, 255, 255))},
+    },
+}]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="IntValue" referent="RBX69">
+				<Properties>
+					<string name="Name"><![CDATA[CurrentAmmo]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<int64 name="Value">70</int64>
+				</Properties>
+			</Item>
+		</Item>
+		<Item class="Tool" referent="RBX70">
+			<Properties>
+				<string name="Name"><![CDATA[Sharky Railgun]]></string>
+				<int64 name="SourceAssetId">4842190633</int64>
+				<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+				<bool name="Archivable">true</bool>
+				<Ref name="PrimaryPart">null</Ref>
+				<Content name="TextureId">
+					<null></null>
+				</Content>
+				<bool name="CanBeDropped">false</bool>
+				<bool name="Enabled">true</bool>
+				<CoordinateFrame name="Grip">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="ManualActivationOnly">false</bool>
+				<bool name="RequiresHandle">true</bool>
+				<string name="ToolTip"><![CDATA[]]></string>
+			</Properties>
+			<Item class="ModuleScript" referent="RBX71">
+				<Properties>
+					<string name="Name"><![CDATA[ColorInit]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                               File: ModuleScript_RBX71
+--                               Dumped in 0.00327 seconds
+--                          Bytecode version 12  |  2 functions
+
+return function(p1, p2) -- Line: 1
+    local v1, v2
+    local Parts = p1:FindFirstChild("Parts")
+    if not Parts or not Parts.Main:FindFirstChild("TipAttachment") then
+        return
+    end
+    local Main = Parts.Main
+    if p2.Name ~= "Team Red" then
+        v2 = "rbxassetid://14030578232"
+    else
+        v2 = "rbxassetid://14030578183"
+    end
+    Main.TextureID = v2
+    local Neon = Parts.Neon
+    if p2.Name ~= "Team Red" then
+        v2 = Color3.fromRGB(0, 121, 165)
+    else
+        v2 = Color3.fromRGB(165, 70, 70)
+        if not v2 then
+            v2 = Color3.fromRGB(0, 121, 165)
+        end
+    end
+    Neon.Color = v2
+    if p2.Name ~= "Team Red" then
+        v1 = Color3.fromRGB(0, 170, 255)
+    else
+        v1 = Color3.fromRGB(255, 48, 48)
+        if not v1 then
+            v1 = Color3.fromRGB(0, 170, 255)
+        end
+    end
+    for k, v in pairs(Parts:GetDescendants()) do
+        if v:IsA("ParticleEmitter") and v.Name == "ChargingParticles" then
+            v.Color = ColorSequence.new(v1, v1)
+        end
+    end
+    if p2.Name ~= "Team Red" then
+        v2 = Color3.fromRGB(19, 121, 255)
+    else
+        v2 = Color3.fromRGB(255, 62, 62)
+        if not v2 then
+            v2 = Color3.fromRGB(19, 121, 255)
+        end
+    end
+    for k2, i in pairs(Parts.Main:GetChildren()) do
+        if i:IsA("Beam") and i.Name == "ChargingBeam" then
+            i.Color = ColorSequence.new(v2, v2)
+        end
+    end
+end]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="ModuleScript" referent="RBX72">
+				<Properties>
+					<string name="Name"><![CDATA[Config]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Content name="LinkedSource">
+						<null></null>
+					</Content>
+					<ProtectedString name="Source"><![CDATA[--[[
+__________                   __               __    __________              .__
+\______   \_______  ____    |__| ____   _____/  |_  \______   \ ____ _____  |  |
+ |     ___/\_  __ \/  _ \   |  |/ __ \_/ ___\   __\  |       _// __ \\__  \ |  |
+ |    |     |  | \(  <_> )  |  \  ___/\  \___|  |    |    |   \  ___/ / __ \|  |__
+ |____|     |__|   \____/\__|  |\___  >\___  >__|    |____|_  /\___  >____  /____/
+                        \______|    \/     \/               \/     \/     \/
+]]
+--                           Project Real  |  Luau Decompiler
+--                                   Made by @zinvera
+--                               File: ModuleScript_RBX72
+--                               Dumped in 0.00112 seconds
+--                          Bytecode version 12  |  1 functions
+
+return {
+    AmmoCapacity = 5,
+    BeamFadeTime = 0.25,
+    BeamWidth0 = 1,
+    BeamWidth1 = 5,
+    BlastDamage = 85,
+    BlastPressure = 20000,
+    BlastRadius = 18,
+    BulletSpeed = 20000,
+    ChargeRate = 0.75,
+    DischargeRate = 0.6,
+    ExplodeOnImpact = true,
+    FlashBrightness = 3,
+    ExplosionEffect = "Explosion",
+    FlashRange = 10,
+    HitDamage = 45,
+    HitMarkEffect = "Scorch",
+    MaxDistance = 1000,
+    MuzzleFlashSize0 = 2,
+    MuzzleFlashSize1 = 3,
+    NumProjectiles = 1,
+    RecoilDecay = 0.95,
+    RecoilMax = 5,
+    RecoilMin = 4.5,
+    ShotEffect = "Bullet",
+    ShouldIgnoreHitDamage = true,
+    ShowEntireTrailUntilHit = true,
+    TotalRecoilMax = 7.1,
+    FlashColor = {TeamBlue = Color3.fromRGB(12, 210, 255), TeamRed = Color3.fromRGB(255, 46, 46)},
+    ShotEffectConfig = {
+        Beam0 = {
+            Texture = "rbxassetid://1286995910",
+            Segments = 50,
+            Color = {
+                TeamBlue = ColorSequence.new(Color3.fromRGB(0, 85, 255)),
+                TeamRed = ColorSequence.new(Color3.fromRGB(255, 0, 0)),
+            },
+        },
+        Beam1 = {
+            Texture = "rbxassetid://11472671285",
+            TextureLength = 5,
+            TextureSpeed = 5,
+            Segments = 50,
+            TextureMode = Enum.TextureMode.Static,
+            Color = ColorSequence.new(Color3.fromRGB(255, 246, 211), Color3.fromRGB(249, 243, 199)),
+        },
+    },
+}]]></ProtectedString>
+				</Properties>
+			</Item>
+			<Item class="StringValue" referent="RBX73">
+				<Properties>
+					<string name="Name"><![CDATA[WeaponType]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<string name="Value"><![CDATA[BulletWeapon]]></string>
+				</Properties>
+			</Item>
+			<Item class="Model" referent="RBX74">
+				<Properties>
+					<string name="Name"><![CDATA[Parts]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<Ref name="PrimaryPart">RBX84</Ref>
+				</Properties>
+				<Item class="Part" referent="RBX75">
+					<Properties>
+						<string name="Name"><![CDATA[Emitter]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>65.6897964</X>
+							<Y>35.7158394</Y>
+							<Z>-56.6851044</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>0.866007268</R11>
+							<R12>-0.500031412</R12>
+							<R20>0</R20>
+							<R21>0.500031412</R21>
+							<R22>0.866007268</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294043591</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">-127</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.42411935</X>
+							<Y>0.0849999338</Y>
+							<Z>0.324999988</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+					</Properties>
+					<Item class="ParticleEmitter" referent="RBX76">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingParticles]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">1</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">10</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.25 1</NumberRange>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">0</float>
+							<NumberRange name="RotSpeed">-200 200</NumberRange>
+							<NumberRange name="Rotation">-180 180</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0988000035 0.5 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.451097816 0.173611045 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">8 11</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>0</X>
+								<Y>0</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://243098098]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.108000003 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.717999995 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Part" referent="RBX77">
+					<Properties>
+						<string name="Name"><![CDATA[Emitter]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>65.6897964</X>
+							<Y>37.1558266</Y>
+							<Z>-56.6851044</Z>
+							<R00>1</R00>
+							<R01>-0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>0.866007268</R11>
+							<R12>0.500031412</R12>
+							<R20>-0</R20>
+							<R21>-0.500031412</R21>
+							<R22>0.866007268</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294043591</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">-127</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.42411935</X>
+							<Y>0.0849999338</Y>
+							<Z>0.324999988</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+					</Properties>
+					<Item class="ParticleEmitter" referent="RBX78">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingParticles]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">1</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">10</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.25 1</NumberRange>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">0</float>
+							<NumberRange name="RotSpeed">-200 200</NumberRange>
+							<NumberRange name="Rotation">-180 180</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0988000035 0.5 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.451097816 0.173611045 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">8 11</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>0</X>
+								<Y>0</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://243098098]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.108000003 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.717999995 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Part" referent="RBX79">
+					<Properties>
+						<string name="Name"><![CDATA[Emitter]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>65.6898117</X>
+							<Y>37.155838</Y>
+							<Z>-58.9868965</Z>
+							<R00>-1.00000024</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>0.866007268</R11>
+							<R12>0.500031412</R12>
+							<R20>0</R20>
+							<R21>0.500031412</R21>
+							<R22>-0.866007447</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294043591</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">-127</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.42411935</X>
+							<Y>0.0849999338</Y>
+							<Z>0.324999988</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+					</Properties>
+					<Item class="ParticleEmitter" referent="RBX80">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingParticles]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">1</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">10</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.25 1</NumberRange>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">0</float>
+							<NumberRange name="RotSpeed">-200 200</NumberRange>
+							<NumberRange name="Rotation">-180 180</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0988000035 0.5 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.451097816 0.173611045 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">8 11</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>0</X>
+								<Y>0</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://243098098]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.108000003 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.717999995 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="Part" referent="RBX81">
+					<Properties>
+						<string name="Name"><![CDATA[Emitter]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>65.6898117</X>
+							<Y>35.7158508</Y>
+							<Z>-58.9868965</Z>
+							<R00>-1.00000024</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>0.866007268</R11>
+							<R12>-0.500031412</R12>
+							<R20>-0</R20>
+							<R21>-0.500031412</R21>
+							<R22>-0.866007447</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4294043591</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">-127</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>1.42411935</X>
+							<Y>0.0849999338</Y>
+							<Z>0.324999988</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">1</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+					</Properties>
+					<Item class="ParticleEmitter" referent="RBX82">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingParticles]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Vector3 name="Acceleration">
+								<X>0</X>
+								<Y>0</Y>
+								<Z>0</Z>
+							</Vector3>
+							<float name="Brightness">1</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.188235298 0.188235298 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="Drag">10</float>
+							<bool name="Enabled">true</bool>
+							<bool name="FlipbookBlendFrames">true</bool>
+							<NumberRange name="FlipbookFramerate">1 1</NumberRange>
+							<string name="FlipbookIncompatible"><![CDATA[Particle texture must be 1024 by 1024 to use flipbooks.]]></string>
+							<int name="FlipbookSizeX">1</int>
+							<int name="FlipbookSizeY">1</int>
+							<bool name="FlipbookStartRandom">false</bool>
+							<NumberRange name="Lifetime">0.25 1</NumberRange>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<bool name="LockedToPart">true</bool>
+							<float name="Rate">0</float>
+							<NumberRange name="RotSpeed">-200 200</NumberRange>
+							<NumberRange name="Rotation">-180 180</NumberRange>
+							<float name="ShapePartial">1</float>
+							<NumberSequence name="Size">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0988000035 0.5 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.451097816 0.173611045 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<NumberRange name="Speed">8 11</NumberRange>
+							<Vector2 name="SpreadAngle">
+								<X>0</X>
+								<Y>0</Y>
+							</Vector2>
+							<NumberSequence name="Squash">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://243098098]]></url>
+							</Content>
+							<float name="TimeScale">1</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.108000003 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.717999995 0.0500000007 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="VelocityInheritance">0</float>
+							<bool name="WindAffectsDrag">false</bool>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+				<Item class="MeshPart" referent="RBX83">
+					<Properties>
+						<string name="Name"><![CDATA[Neon]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>65.8541565</X>
+							<Y>36.367569</Y>
+							<Z>-57.8849678</Z>
+							<R00>-1.1920929e-07</R00>
+							<R01>0</R01>
+							<R02>1.00000012</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>-1.00000012</R20>
+							<R21>0</R21>
+							<R22>-1.1920929e-07</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4289021510</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>7.89961803e-07</X>
+							<Y>-0.0670742467</Y>
+							<Z>0.343377918</Z>
+							<R00>-1</R00>
+							<R01>0</R01>
+							<R02>-0</R02>
+							<R10>0</R10>
+							<R11>0</R11>
+							<R12>-1</R12>
+							<R20>0</R20>
+							<R21>-1</R21>
+							<R22>-0</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.547909617</X>
+							<Y>0.36537081</Y>
+							<Z>2.59933186</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>-0.00136990321</X>
+							<Y>0.00432998966</Y>
+							<Z>0.299378693</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>0.138189375</X>
+							<Y>0.141065806</Y>
+							<Z>0.0044882684</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-1.80033767e-05</X>
+							<Y>-1.12444177e-05</Y>
+							<Z>-0.00176093518</Z>
+						</Vector3>
+						<float name="UnscaledVolume">0.0740836859</float>
+						<Vector3 name="InitialSize">
+							<X>0.785482466</X>
+							<Y>0.523795128</Y>
+							<Z>3.72639871</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://14030577956]]></url>
+						</Content>
+						<Content name="TextureID">
+							<null></null>
+						</Content>
+					</Properties>
+				</Item>
+				<Item class="MeshPart" referent="RBX84">
+					<Properties>
+						<string name="Name"><![CDATA[Main]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<bool name="Anchored">false</bool>
+						<bool name="AudioCanCollide">true</bool>
+						<float name="BackParamA">-0.5</float>
+						<float name="BackParamB">0.5</float>
+						<float name="BottomParamA">-0.5</float>
+						<float name="BottomParamB">0.5</float>
+						<CoordinateFrame name="CFrame">
+							<X>66.1533508</X>
+							<Y>36.246582</Y>
+							<Z>-57.884964</Z>
+							<R00>-1.1920929e-07</R00>
+							<R01>0</R01>
+							<R02>1.00000012</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>-1.00000012</R20>
+							<R21>0</R21>
+							<R22>-1.1920929e-07</R22>
+						</CoordinateFrame>
+						<bool name="CanCollide">false</bool>
+						<bool name="CanQuery">false</bool>
+						<bool name="CanTouch">false</bool>
+						<bool name="CastShadow">true</bool>
+						<string name="CollisionGroup"><![CDATA[Default]]></string>
+						<int name="CollisionGroupId">0</int>
+						<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+						<bool name="EnableFluidForces">false</bool>
+						<float name="FrontParamA">-0.5</float>
+						<float name="FrontParamB">0.5</float>
+						<float name="LeftParamA">-0.5</float>
+						<float name="LeftParamB">0.5</float>
+						<bool name="Locked">false</bool>
+						<bool name="Massless">false</bool>
+						<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+						<CoordinateFrame name="PivotOffset">
+							<X>7.89961803e-07</X>
+							<Y>0.0539096557</Y>
+							<Z>0.0441906266</Z>
+							<R00>-1</R00>
+							<R01>0</R01>
+							<R02>-0</R02>
+							<R10>0</R10>
+							<R11>0</R11>
+							<R12>-1</R12>
+							<R20>0</R20>
+							<R21>-1</R21>
+							<R22>-0</R22>
+						</CoordinateFrame>
+						<float name="Reflectance">0</float>
+						<float name="RightParamA">-0.5</float>
+						<float name="RightParamB">0.5</float>
+						<int name="RootPriority">0</int>
+						<Vector3 name="RotVelocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="size">
+							<X>0.570403159</X>
+							<Y>1.38376772</Y>
+							<Z>3.67622066</Z>
+						</Vector3>
+						<float name="TopParamA">-0.5</float>
+						<float name="TopParamB">0.5</float>
+						<float name="Transparency">0</float>
+						<Vector3 name="Velocity">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Vector3 name="UnscaledCofm">
+							<X>0.000114768001</X>
+							<Y>0.0171937067</Y>
+							<Z>-0.210251883</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaDiags">
+							<X>2.90694737</X>
+							<Y>2.7834971</Y>
+							<Z>0.227965802</Z>
+						</Vector3>
+						<Vector3 name="UnscaledVolInertiaOffDiags">
+							<X>-1.21639296e-05</X>
+							<Y>0.000432430708</Y>
+							<Z>0.223122612</Z>
+						</Vector3>
+						<float name="UnscaledVolume">1.73061919</float>
+						<Vector3 name="InitialSize">
+							<X>0.817729235</X>
+							<Y>1.98376751</Y>
+							<Z>5.27022505</Z>
+						</Vector3>
+						<bool name="DoubleSided">false</bool>
+						<bool name="HasJointOffset">false</bool>
+						<bool name="HasSkinnedMesh">false</bool>
+						<Vector3 name="JointOffset">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+						</Vector3>
+						<Content name="MeshId">
+							<url><![CDATA[rbxassetid://14030578052]]></url>
+						</Content>
+						<Content name="TextureID">
+							<url><![CDATA[rbxassetid://14030578183]]></url>
+						</Content>
+					</Properties>
+					<Item class="Sound" referent="RBX85">
+						<Properties>
+							<string name="Name"><![CDATA[Charging]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1.10000002</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://14122599995]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX86">
+						<Properties>
+							<string name="Name"><![CDATA[DischargeComplete]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://4812472732]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX87">
+						<Properties>
+							<string name="Name"><![CDATA[Discharging]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">true</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://4812473422]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.100000001</float>
+						</Properties>
+					</Item>
+					<Item class="Sound" referent="RBX88">
+						<Properties>
+							<string name="Name"><![CDATA[Fired]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="AcousticSimulationEnabled">true</bool>
+							<NumberRange name="LoopRegion">0 60000</NumberRange>
+							<bool name="Looped">false</bool>
+							<bool name="PlayOnRemove">false</bool>
+							<NumberRange name="PlaybackRegion">0 60000</NumberRange>
+							<bool name="PlaybackRegionsEnabled">false</bool>
+							<float name="PlaybackSpeed">1</float>
+							<bool name="Playing">false</bool>
+							<float name="RollOffMaxDistance">10000</float>
+							<float name="RollOffMinDistance">10</float>
+							<Ref name="SoundGroup">null</Ref>
+							<Content name="SoundId">
+								<url><![CDATA[rbxassetid://14122695768]]></url>
+							</Content>
+							<double name="TimePosition">0</double>
+							<float name="Volume">0.5</float>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX89">
+						<Properties>
+							<string name="Name"><![CDATA[HandleAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0</X>
+								<Y>-0.335998535</Y>
+								<Z>0.783004761</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX90">
+						<Properties>
+							<string name="Name"><![CDATA[TipAttachment]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0</X>
+								<Y>0.141981125</Y>
+								<Z>-1.69347382</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>0.825484872</R11>
+								<R12>-0.564424276</R12>
+								<R20>0</R20>
+								<R21>0.564424276</R21>
+								<R22>0.825484872</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX91">
+						<Properties>
+							<string name="Name"><![CDATA[MuzzleFlash0]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>-0.326746851</X>
+								<Y>-0.123714231</Y>
+								<Z>-3.03708839</Z>
+								<R00>-1.4424324e-05</R00>
+								<R01>0.707106531</R01>
+								<R02>0.707107067</R02>
+								<R10>6.00814819e-05</R10>
+								<R11>-0.707107067</R11>
+								<R12>0.707106531</R12>
+								<R20>1</R20>
+								<R21>5.2683572e-05</R21>
+								<R22>-3.22844644e-05</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX92">
+						<Properties>
+							<string name="Name"><![CDATA[MuzzleFlash1]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>0.326746851</X>
+								<Y>0.529779136</Y>
+								<Z>-3.03708839</Z>
+								<R00>-3.23057175e-05</R00>
+								<R01>0.707153261</R01>
+								<R02>0.707060397</R02>
+								<R10>-1.33812428e-05</R10>
+								<R11>-0.707060397</R11>
+								<R12>0.707153261</R12>
+								<R20>1</R20>
+								<R21>1.33837466e-05</R21>
+								<R22>3.23046843e-05</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Beam" referent="RBX93">
+						<Properties>
+							<string name="Name"><![CDATA[MuzzleFlash]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Ref name="Attachment0">null</Ref>
+							<Ref name="Attachment1">null</Ref>
+							<float name="Brightness">1</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 0.839215696 0.670588255 0 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.917647064 0.435294122 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="CurveSize0">0</float>
+							<float name="CurveSize1">0</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FaceCamera">false</bool>
+							<float name="LightEmission">1</float>
+							<float name="LightInfluence">0</float>
+							<int name="Segments">5</int>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://872910628]]></url>
+							</Content>
+							<float name="TextureLength">1</float>
+							<float name="TextureSpeed">0</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 0 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="Width0">1</float>
+							<float name="Width1">1</float>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX94">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX95">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX96">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX97">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX98">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="WeldConstraint" referent="RBX99">
+						<Properties>
+							<string name="Name"><![CDATA[WeldConstraint]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<bool name="Active">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX100">
+						<Properties>
+							<string name="Name"><![CDATA[B1]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>-4.57763672e-05</X>
+								<Y>0.100006104</Y>
+								<Z>-1.89993286</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Attachment" referent="RBX101">
+						<Properties>
+							<string name="Name"><![CDATA[B0]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<CoordinateFrame name="CFrame">
+								<X>-3.05175781e-05</X>
+								<Y>0.100009918</Y>
+								<Z>0.900001526</Z>
+								<R00>1</R00>
+								<R01>0</R01>
+								<R02>0</R02>
+								<R10>0</R10>
+								<R11>1</R11>
+								<R12>0</R12>
+								<R20>0</R20>
+								<R21>0</R21>
+								<R22>1</R22>
+							</CoordinateFrame>
+							<bool name="Visible">false</bool>
+						</Properties>
+					</Item>
+					<Item class="Beam" referent="RBX102">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingBeam]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Ref name="Attachment0">RBX101</Ref>
+							<Ref name="Attachment1">RBX100</Ref>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="CurveSize0">-2</float>
+							<float name="CurveSize1">0</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FaceCamera">true</bool>
+							<float name="LightEmission">0</float>
+							<float name="LightInfluence">0</float>
+							<int name="Segments">25</int>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://8030760338]]></url>
+							</Content>
+							<float name="TextureLength">0.5</float>
+							<float name="TextureSpeed">2</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0723306537 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.238805965 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.783999979 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="Width0">0</float>
+							<float name="Width1">2</float>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+					<Item class="Beam" referent="RBX103">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingBeam]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Ref name="Attachment0">RBX101</Ref>
+							<Ref name="Attachment1">RBX100</Ref>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="CurveSize0">0</float>
+							<float name="CurveSize1">2</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FaceCamera">true</bool>
+							<float name="LightEmission">0</float>
+							<float name="LightInfluence">0</float>
+							<int name="Segments">25</int>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://8030760338]]></url>
+							</Content>
+							<float name="TextureLength">0.5</float>
+							<float name="TextureSpeed">2.29999995</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0723306537 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.238805965 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.784156144 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="Width0">0</float>
+							<float name="Width1">2</float>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+					<Item class="Beam" referent="RBX104">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingBeam]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Ref name="Attachment0">RBX101</Ref>
+							<Ref name="Attachment1">RBX100</Ref>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="CurveSize0">0</float>
+							<float name="CurveSize1">-2</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FaceCamera">true</bool>
+							<float name="LightEmission">0</float>
+							<float name="LightInfluence">0</float>
+							<int name="Segments">25</int>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://8030760338]]></url>
+							</Content>
+							<float name="TextureLength">0.5</float>
+							<float name="TextureSpeed">1.39999998</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0723306537 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.238805965 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.783999979 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="Width0">0</float>
+							<float name="Width1">2</float>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+					<Item class="Beam" referent="RBX105">
+						<Properties>
+							<string name="Name"><![CDATA[ChargingBeam]]></string>
+							<int64 name="SourceAssetId">-1</int64>
+							<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+							<bool name="Archivable">true</bool>
+							<Ref name="Attachment0">RBX101</Ref>
+							<Ref name="Attachment1">RBX100</Ref>
+							<float name="Brightness">5</float>
+							<ColorSequence name="Color">
+								<Keypoints>
+									<ColorSequenceKeypoint>0 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+									<ColorSequenceKeypoint>1 1 0.243137255 0.243137255 0</ColorSequenceKeypoint>
+								</Keypoints>
+							</ColorSequence>
+							<float name="CurveSize0">2</float>
+							<float name="CurveSize1">-0.300000012</float>
+							<bool name="Enabled">false</bool>
+							<bool name="FaceCamera">true</bool>
+							<float name="LightEmission">0</float>
+							<float name="LightInfluence">0</float>
+							<int name="Segments">25</int>
+							<Content name="Texture">
+								<url><![CDATA[rbxassetid://8030760338]]></url>
+							</Content>
+							<float name="TextureLength">0.5</float>
+							<float name="TextureSpeed">1.79999995</float>
+							<NumberSequence name="Transparency">
+								<Keypoints>
+									<NumberSequenceKeypoint>0 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.0723306537 1 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.238805965 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>0.783999979 0 0</NumberSequenceKeypoint>
+									<NumberSequenceKeypoint>1 1 0</NumberSequenceKeypoint>
+								</Keypoints>
+							</NumberSequence>
+							<float name="Width0">0</float>
+							<float name="Width1">2</float>
+							<float name="ZOffset">0</float>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
+			<Item class="Part" referent="RBX106">
+				<Properties>
+					<string name="Name"><![CDATA[Handle]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<bool name="Anchored">false</bool>
+					<bool name="AudioCanCollide">true</bool>
+					<float name="BackParamA">-0.5</float>
+					<float name="BackParamB">0.5</float>
+					<float name="BottomParamA">-0.5</float>
+					<float name="BottomParamB">0.5</float>
+					<CoordinateFrame name="CFrame">
+						<X>66.026001</X>
+						<Y>36.1470184</Y>
+						<Z>-57.8849945</Z>
+						<R00>0</R00>
+						<R01>0</R01>
+						<R02>-1</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>1</R20>
+						<R21>0</R21>
+						<R22>0</R22>
+					</CoordinateFrame>
+					<bool name="CanCollide">false</bool>
+					<bool name="CanQuery">false</bool>
+					<bool name="CanTouch">false</bool>
+					<bool name="CastShadow">true</bool>
+					<string name="CollisionGroup"><![CDATA[Default]]></string>
+					<int name="CollisionGroupId">0</int>
+					<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+					<bool name="EnableFluidForces">false</bool>
+					<float name="FrontParamA">-0.5</float>
+					<float name="FrontParamB">0.5</float>
+					<float name="LeftParamA">-0.5</float>
+					<float name="LeftParamB">0.5</float>
+					<bool name="Locked">false</bool>
+					<bool name="Massless">false</bool>
+					<string name="MaterialVariantSerialized"><![CDATA[]]></string>
+					<CoordinateFrame name="PivotOffset">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<float name="Reflectance">0</float>
+					<float name="RightParamA">-0.5</float>
+					<float name="RightParamB">0.5</float>
+					<int name="RootPriority">-127</int>
+					<Vector3 name="RotVelocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+					<Vector3 name="size">
+						<X>0.5</X>
+						<Y>1</Y>
+						<Z>3</Z>
+					</Vector3>
+					<float name="TopParamA">-0.5</float>
+					<float name="TopParamB">0.5</float>
+					<float name="Transparency">1</float>
+					<Vector3 name="Velocity">
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Vector3>
+				</Properties>
+				<Item class="Weld" referent="RBX107">
+					<Properties>
+						<string name="Name"><![CDATA[HandleWeld]]></string>
+						<int64 name="SourceAssetId">-1</int64>
+						<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+						<bool name="Archivable">true</bool>
+						<CoordinateFrame name="C0">
+							<X>0</X>
+							<Y>0</Y>
+							<Z>0</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<CoordinateFrame name="C1">
+							<X>0</X>
+							<Y>-0.335998535</Y>
+							<Z>0.783004761</Z>
+							<R00>1</R00>
+							<R01>0</R01>
+							<R02>0</R02>
+							<R10>0</R10>
+							<R11>1</R11>
+							<R12>0</R12>
+							<R20>0</R20>
+							<R21>0</R21>
+							<R22>1</R22>
+						</CoordinateFrame>
+						<bool name="Enabled">true</bool>
+						<Ref name="Part0">RBX106</Ref>
+						<Ref name="Part1">RBX84</Ref>
+					</Properties>
+				</Item>
+			</Item>
+			<Item class="IntValue" referent="RBX108">
+				<Properties>
+					<string name="Name"><![CDATA[CurrentAmmo]]></string>
+					<int64 name="SourceAssetId">-1</int64>
+					<string name="UniqueId"><![CDATA[00000000-0000-0000-0000-000000000000]]></string>
+					<bool name="Archivable">true</bool>
+					<int64 name="Value">5</int64>
+				</Properties>
+			</Item>
+		</Item>
+	</Item>
+	<SharedStrings/>
+</roblox>
