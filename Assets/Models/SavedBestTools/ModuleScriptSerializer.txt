@@ -1,0 +1,100 @@
+local Serializer = {}
+
+local function formatValue(value)
+    local valueType = typeof(value)
+
+    if valueType == "string" then
+        return string.format("%q", value)
+    elseif valueType == "number" or valueType == "boolean" then
+        return tostring(value)
+    elseif valueType == "Vector3" then
+        return string.format("Vector3.new(%.17g, %.17g, %.17g)", value.X, value.Y, value.Z)
+    elseif valueType == "Vector2" then
+        return string.format("Vector2.new(%.17g, %.17g)", value.X, value.Y)
+    elseif valueType == "CFrame" then
+        local components = { value:GetComponents() }
+        local formatted = {}
+        for index, component in ipairs(components) do
+            formatted[index] = string.format("%.17g", component)
+        end
+        return "CFrame.new(" .. table.concat(formatted, ", ") .. ")"
+    elseif valueType == "Color3" then
+        return string.format("Color3.fromRGB(%d, %d, %d)", math.round(value.R * 255), math.round(value.G * 255), math.round(value.B * 255))
+    elseif valueType == "EnumItem" then
+        return tostring(value)
+    elseif valueType == "UDim2" then
+        return string.format("UDim2.new(%.17g, %d, %.17g, %d)", value.X.Scale, value.X.Offset, value.Y.Scale, value.Y.Offset)
+    elseif valueType == "BrickColor" then
+        return string.format("BrickColor.new(%q)", value.Name)
+    elseif valueType == "NumberRange" then
+        return string.format("NumberRange.new(%.17g, %.17g)", value.Min, value.Max)
+    end
+
+    return nil
+end
+
+local PROPERTIES = {
+    Instance = { "Name" },
+    BasePart = { "Size", "CFrame", "Color", "Material", "Transparency", "Reflectance", "CanCollide", "CanQuery", "CanTouch", "Anchored", "Massless" },
+    Tool = { "Grip", "CanBeDropped", "RequiresHandle", "ManualActivationOnly", "ToolTip" },
+    MeshPart = { "MeshId", "TextureID", "DoubleSided" },
+    SpecialMesh = { "MeshId", "TextureId", "Scale", "Offset", "MeshType" },
+    Decal = { "Texture", "Transparency", "Face" },
+    Texture = { "Texture", "Transparency", "Face", "StudsPerTileU", "StudsPerTileV" },
+    Sound = { "SoundId", "Volume", "PlaybackSpeed", "Looped" },
+    Weld = { "C0", "C1", "Enabled" },
+    Motor6D = { "C0", "C1", "Enabled" },
+    ParticleEmitter = { "Texture", "Rate", "Lifetime", "Speed", "Enabled" },
+    ModuleScript = { "Source" },
+    LocalScript = { "Source", "Disabled" },
+    Script = { "Source", "Disabled" },
+}
+
+function Serializer.Serialize(rootInstance)
+    local lines = { "return function()", "    local instances = {}" }
+    local counter = 0
+
+    local function serializeInstance(instance, parentVariable)
+        counter += 1
+        local variable = "obj_" .. counter
+        table.insert(lines, string.format("    local %s = Instance.new(%q)", variable, instance.ClassName))
+        table.insert(lines, string.format("    instances[%q] = %s", variable, variable))
+
+        local serializedProperties = {}
+        for className, propertyNames in pairs(PROPERTIES) do
+            if instance:IsA(className) then
+                for _, propertyName in ipairs(propertyNames) do
+                    if not serializedProperties[propertyName] then
+                        local succeeded, value = pcall(function()
+                            return instance[propertyName]
+                        end)
+                        if succeeded then
+                            local formatted = formatValue(value)
+                            if formatted then
+                                serializedProperties[propertyName] = true
+                                table.insert(lines, string.format("    %s.%s = %s", variable, propertyName, formatted))
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        if parentVariable then
+            table.insert(lines, string.format("    %s.Parent = %s", variable, parentVariable))
+        end
+
+        for _, child in ipairs(instance:GetChildren()) do
+            serializeInstance(child, variable)
+        end
+
+        return variable
+    end
+
+    local rootVariable = serializeInstance(rootInstance, nil)
+    table.insert(lines, "    return " .. rootVariable)
+    table.insert(lines, "end")
+    return table.concat(lines, "\n")
+end
+
+return Serializer
